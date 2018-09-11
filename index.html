@@ -1,0 +1,142 @@
+
+<!DOCTYPE html><!-- include a-frame -->
+
+<html>
+<head>
+	<title></title>
+
+<script src="vendor/aframe/build/aframe.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- include ar.js for aframe -->
+<script src='build/aframe-ar.js'></script>
+<script>ARjs.Context.baseURL = 'three.js/'</script>
+</head>
+<style type="text/css">
+	body{
+		width: 100%!important;
+		margin:0!important;
+	}
+	video{
+		width: auto!important;
+		margin:0!important;
+		margin-left: -70%!important;
+	}
+	.inicio{
+		margin-left: auto;
+		margin-right: auto;
+		top: 100px;
+	}
+	.id1{
+		display: none;
+	}
+	@media only screen and (max-width: 600px){
+		.inicio{
+			width: 60%!important;
+		}
+	} 
+</style>
+<audio id="musica" src="audio/intro.mp3" autoplay="" loop="">
+<p>Tu navegador no implementa el elemento audio.</p>
+</audio>
+<!-- start the body of your page -->
+<body style='margin : 0px; overflow: hidden;'>
+	<div id="contenedor" style="">
+		
+	</div>
+	<!-- add some info at the top of the page -->
+	<label id="demo" style="    margin-left:45%;
+    margin-top: 30px;
+    width: 20%;">Other</label>
+	<div id ="botones" style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
+		
+		<p id="demo"></p>
+		<div class="row ">
+			<div class="col-md-4 inicio">
+				
+						
+				<button type="button" onclick="empezar();" class="btn btn-primary btn-lg btn-block">Ingresar</button>
+				
+				<button type="button" onclick="buscar();" class="btn btn-default btn-lg btn-block">Seleccionar_usuario</button>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Define your 3d scene and enabled ar.js -->
+
+<a-scene >
+		<a-marker id="id1" preset='hiro'>
+		
+			<a-image position='0 0.5 0' rotation="-90 0 0" src="pez.png" width="2" height="2"></a-image>
+
+		</a-marker>
+
+		<!-- handle matrix marker -->
+		<a-marker type='barcode' value='5'>
+			<a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:pink;'>
+				<a-torus-knot radius='0.26' radius-tubular='0.05'>
+					<a-animation attribute="rotation" to="360 0 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
+				</a-torus-knot>
+			</a-box>
+		</a-marker>
+		
+		<!-- handle kanji marker -->
+		<a-marker preset='kanji'>
+			<a-image position='0 0.5 0' rotation="-90 0 0" src="wall.png" width="2" height="2"></a-image>
+		</a-marker>
+		
+		<!-- add a simple camera -->
+		<a-entity camera></a-entity>
+</body>
+<script type="text/javascript">
+	function empezar(){
+		document.getElementById('contenedor').innerHTML='<audio src="audio/boton.mp3" autoplay=""></audio>'
+
+  		$('#botones').fadeTo( "slow", 0.0 );
+
+		document.getElementById('id1').style.display = 'block';
+		setTimeout(function(){
+			document.getElementById('botones').style.display= 'none';	
+		    //do what you need here
+		}, 1000);
+		document.getElementById('musica').src = 'audio/juego.mp3';
+		cronometro();
+		
+	}
+	function cronometro(){
+		var countDownDate = new Date();
+		var min = countDownDate.getMinutes();
+		countDownDate.setMinutes(min+1);
+
+		// Update the count down every 1 second
+		var x = setInterval(function() {
+
+		    // Get todays date and time
+		    var now = new Date().getTime();
+		    
+		    // Find the distance between now and the count down date
+		    var distance = countDownDate - now;
+		    
+		    // Time calculations for days, hours, minutes and seconds
+		    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+		    
+		    // Output the result in an element with id="demo"
+		    document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+		    
+		    // If the count down is over, write some text 
+		    if (distance < 0) {
+		        clearInterval(x);
+		        document.getElementById("demo").innerHTML = "EXPIRED";
+		    }
+		}, 1000);
+	}
+	function buscar(){
+		alert(document.getElementById('id1').position);
+	}
+
+
+</script>
