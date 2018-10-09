@@ -1,0 +1,22 @@
+Buscaminas 3d con marcadores
+
+Instalación
+- Descargar o hacer commit https://github.com/jeromeetienne/AR.js/   . Aqui esta contenida la libreria  A-frame ar.js , y  la libreria Three.js
+A.frame Js se encarga de los marcadores, busqueda y procesameinto
+THree.js se encarga de simular la imagen o el bjeto 3d dentro del espacio del marcador
+- Elaborar sus propios marcadores aqui https://medium.com/arjs/how-to-create-your-own-marker-44becbec1105
+- Descargar marcadores en papel
+
+Trabajo
+Selección: Consiste en hacer que el touch coincida con los parametros dados de Three.js haciendo un thresshold para que tenga mas apertura.
+Una vez seleccionado se hace un cambio de imagen con JS 
+Manipulación: Aparece un muñeco que al hacer click me permita manipularlo y llevarlo hasta los corazones para uamentar mi vida.
+Sistema de control: se tiene una interfaz que comunica con el juego, en el juego se tiene 4 caracteristicas(vidas, espacios vacios, vecinos cercanos,tiempo )
+Localizacion: se tiene un grafo doblemente dirigido, este grafo representa a los marcadores y a los vecinos cercanos.
+
+EJECUCIÓN
+DESCARGAR https://github.com/kfer9320/ihcproyecto1
+CORRER INDEX.HTML EN UN NAVEGADOR CUALQUIERA DE PREFERENCIA CHROME 
+ACEPTAR PERMISOS DE CAMARA.
+COLOCAR LOS MARCADORES EN LAS PAREDES Y A JUGAR. LOS MARCADORES ESTAN LA CARPETA MARCADORES_DESCARGA
+SOLO VISTA CELULAR
