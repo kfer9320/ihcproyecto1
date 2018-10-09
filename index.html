@@ -1,142 +1,89 @@
-
-<!DOCTYPE html><!-- include a-frame -->
-
+<!DOCTYPE html>
 <html>
-<head>
-	<title></title>
 
-<script src="vendor/aframe/build/aframe.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<!-- include ar.js for aframe -->
-<script src='build/aframe-ar.js'></script>
-<script>ARjs.Context.baseURL = 'three.js/'</script>
-</head>
-<style type="text/css">
-	body{
-		width: 100%!important;
-		margin:0!important;
+<head><meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="theme-color" content="#3864ab">
+	<title>Buscaminas</title>
+	<link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="//assets.pokemon.com/static2/_ui/css/gus.css"><style>
+	body{margin:0}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
+.tns-outer{padding:0!important}.tns-outer [hidden]{display:none!important}.tns-outer [aria-controls],.tns-outer [data-action]{cursor:pointer}.tns-slider{-webkit-transition:all 0s;-moz-transition:all 0s;transition:all 0s}.tns-slider>div,.tns-slider>li{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.tns-horizontal.tns-subpixel{white-space:nowrap}.tns-horizontal.tns-subpixel>div,.tns-horizontal.tns-subpixel>li{display:inline-block;vertical-align:top;white-space:normal}.tns-horizontal.tns-no-subpixel:after{content:'';display:table;clear:both}.tns-horizontal.tns-no-subpixel>div,.tns-horizontal.tns-no-subpixel>li{float:left;margin-right:-100%}.tns-no-calc{position:relative;left:0}.tns-gallery{position:relative;left:0;min-height:1px}.tns-gallery>div,.tns-gallery>li{position:absolute;left:-100%;-webkit-transition:transform 0s,opacity 0s;-moz-transition:transform 0s,opacity 0s;transition:transform 0s,opacity 0s}.tns-gallery>.tns-moving{-webkit-transition:all .25s;-moz-transition:all .25s;transition:all .25s}.tns-lazy-img{-webkit-transition:opacity .6s;-moz-transition:opacity .6s;transition:opacity .6s;opacity:.6}.tns-lazy-img.loaded{opacity:1}.tns-ah{-webkit-transition:height 0s;-moz-transition:height 0s;transition:height 0s}.tns-ovh{overflow:hidden}.tns-visually-hidden{position:absolute;left:-10000em}.tns-transparent{opacity:0;visibility:hidden}.tns-fadeIn{opacity:1;z-index:0}.tns-fadeOut,.tns-normal{opacity:0;z-index:-1}.tns-t-subp2{margin:0 auto;width:310px;position:relative;height:10px;overflow:hidden}.tns-t-ct{width:2333.3333333%;width:-webkit-calc(100% * 70 / 3);width:-moz-calc(100% * 70 / 3);width:calc(100% * 70 / 3);position:absolute;right:0}.tns-t-ct:after{content:'';display:table;clear:both}.tns-t-ct>div{width:1.4285714%;width:-webkit-calc(100% / 70);width:-moz-calc(100% / 70);width:calc(100% / 70);height:10px;float:left}
+section{margin:0 auto;overflow:hidden;-webkit-box-sizing:border-box;box-sizing:border-box}.img-container,picture{display:inline-block}.img-container img,picture img{width:100%;height:auto}body,html{font-family:Lato,sans-serif}body{width:100%;min-height:100%}body.is-scroll-lock{overflow:hidden;position:fixed}main{overflow:hidden;font-size:1.175em}h1,h2,h3,h4,h5,h6,p{position:relative}h1{font-weight:900;color:#fff;font-size:5em}h2{font-weight:900;color:#fff;font-size:3em}h3{font-weight:700;color:#fff;font-size:2.6em}h4{font-weight:600;color:#fff;font-size:1.6em;line-height:1.05em;margin:1em 0 0}h5{font-weight:500;color:#fff;font-size:1.2em}p{font-weight:400;color:#fff;font-size:.87em}section{position:relative}section:after,section:before{content:'';display:table}img{vertical-align:middle}svg{width:100%;max-height:100%;outline:1px solid tomato}.center{text-align:center}.img-wrap{display:inline-block;position:relative}.img-wrap img,.img-wrap picture{width:100%;height:auto}.img-center-solid{position:relative}.img-center-solid img,.img-center-solid picture{display:block;position:relative;left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}@media (max-width:767px){.hide-on-mobile{display:none}}@media (min-width:767px){.show-on-mobile{display:none}}.three-col,.two-col{display:-webkit-box;display:-ms-flexbox;display:flex;max-width:1366px;margin:0 auto;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.three-col .col,.two-col .col{position:relative}.three-col .col .col-pad,.two-col .col .col-pad{padding:10px}.three-col .col.info,.two-col .col.info{max-width:510px}.three-col .col.info .col-pad,.two-col .col.info .col-pad{padding:20px}.button{display:inline-block;border-radius:20px;position:relative;font-family:"Roboto Condensed",Helvetica,Arial,sans-serif;font-weight:700;font-size:16px;line-height:1;text-transform:uppercase;background:#00acee;background:-webkit-gradient(linear,right top,left top,color-stop(4%,#00acee),color-stop(33%,#0087e6),color-stop(93%,#00d1f6));background:-o-linear-gradient(right,#00acee 4%,#0087e6 33%,#00d1f6 93%);background:linear-gradient(to left,#00acee 4%,#0087e6 33%,#00d1f6 93%);padding:15px 30px 15px 85px;margin-left:10px;border:2px #fff solid;text-align:left;white-space:nowrap;color:#fff;text-decoration:none;-webkit-transition:all .4s ease-out;-o-transition:all .4s ease-out;transition:all .4s ease-out;cursor:pointer}.button .play-icon-large{position:absolute;left:-15px;top:-10px;-webkit-transform-origin:50% 50%;-ms-transform-origin:50% 50%;transform-origin:50% 50%;-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1);-webkit-transition:-webkit-transform .2s ease-out;transition:-webkit-transform .2s ease-out;-o-transition:transform .2s ease-out;transition:transform .2s ease-out;transition:transform .2s ease-out,-webkit-transform .2s ease-out}.button .button-text{font-size:1.6em}.button.button-small{padding:10px 60px 10px 15px;height:16px}.button.button-small .play-icon-small{position:absolute;top:0;right:0;-webkit-transform-origin:50% 50%;-ms-transform-origin:50% 50%;transform-origin:50% 50%;-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1);-webkit-transition:-webkit-transform .2s ease-out;transition:-webkit-transform .2s ease-out;-o-transition:transform .2s ease-out;transition:transform .2s ease-out;transition:transform .2s ease-out,-webkit-transform .2s ease-out}.button.button-small .button-text{font-size:1.2em}.button:active,.button:hover{color:#ffc800;text-shadow:1px 1px 0 rgba(0,0,0,.5)}.button:active .play-icon-large,.button:active .play-icon-small,.button:hover .play-icon-large,.button:hover .play-icon-small{-webkit-transform:scale(1.1);-ms-transform:scale(1.1);transform:scale(1.1)}.button-plain{font-weight:700;font-size:16px;line-height:1.2;padding:8px 18px;white-space:normal;text-decoration:none;-webkit-transition:all .4s ease-out;-o-transition:all .4s ease-out;transition:all .4s ease-out;cursor:pointer;background:#0087e6;font-family:"Roboto Condensed",Helvetica,Arial,sans-serif;display:inline-block;border-radius:20px;position:relative;text-transform:uppercase;border:2px #fff solid;text-align:left;color:#fff}.button-plain:hover{color:#ffc800;text-shadow:1px 1px 0 rgba(0,0,0,.5)}.button-plain.button-primary{background:#00d1f6}.button-region{padding:6px 12px 8px 8px;margin-left:0}.button-region .flag{position:relative;margin-left:4px;top:2px}.back-to-top-wrap{z-index:1000;position:fixed;top:0;right:0;cursor:pointer;display:none;-webkit-transform:translateY(-48px);-ms-transform:translateY(-48px);transform:translateY(-48px);-webkit-transition:-webkit-transform .3s ease;transition:-webkit-transform .3s ease;-o-transition:transform .3s ease;transition:transform .3s ease;transition:transform .3s ease,-webkit-transform .3s ease}.back-to-top-wrap.is-visible{-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0)}.back-to-top-wrap .back-to-top-curve{position:relative;width:162px;height:45px;top:-18px;overflow:visible}.back-to-top-wrap .back-to-top{width:44px;height:44px;position:absolute;bottom:-20px;right:10px}@media (max-width:767px){.back-to-top-wrap{display:block}}@-webkit-keyframes slide-left{0%{-webkit-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(148px);transform:translateX(148px)}}@keyframes slide-left{0%{-webkit-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(148px);transform:translateX(148px)}}@-webkit-keyframes slide-left-inverted{0%{-webkit-transform:translateX(0) scaleY(-1);transform:translateX(0) scaleY(-1)}100%{-webkit-transform:translateX(148px) scaleY(-1);transform:translateX(148px) scaleY(-1)}}@keyframes slide-left-inverted{0%{-webkit-transform:translateX(0) scaleY(-1);transform:translateX(0) scaleY(-1)}100%{-webkit-transform:translateX(148px) scaleY(-1);transform:translateX(148px) scaleY(-1)}}.hero{position:relative;padding-top:200px;border-bottom:2px solid #fff}@media (max-width:767px){.hero{padding-top:0;border-bottom:2px solid #fff}}.hero .hero-bg-wrap{position:absolute;width:100%;height:100%;top:0;left:0;z-index:1;overflow:hidden}.hero .hero-bg-wrap:after,.hero .hero-bg-wrap:before{content:'';display:block;width:100%;z-index:0;position:absolute;left:0;opacity:.73}.hero .hero-bg-wrap:before{height:302px;top:-28px;background:-webkit-gradient(linear,left top,left bottom,from(#04dabe),color-stop(55%,rgba(155,255,123,.43)),to(rgba(155,255,123,0)));background:-o-linear-gradient(top,#04dabe 0,rgba(155,255,123,.43) 55%,rgba(155,255,123,0) 100%);background:linear-gradient(to bottom,#04dabe 0,rgba(155,255,123,.43) 55%,rgba(155,255,123,0) 100%);z-index:2}.hero .hero-bg-wrap:after{height:150px;bottom:0;background:-webkit-gradient(linear,left top,left bottom,from(rgba(155,255,123,0)),color-stop(45%,rgba(155,255,123,.43)),to(#04dabe));background:-o-linear-gradient(top,rgba(155,255,123,0) 0,rgba(155,255,123,.43) 45%,#04dabe 100%);background:linear-gradient(to bottom,rgba(155,255,123,0) 0,rgba(155,255,123,.43) 45%,#04dabe 100%);z-index:2}.hero .hero-bg-wrap .hero-bg{background-position:center center;background-repeat:no-repeat;background-size:cover;position:absolute;top:calc(50% - 50%);left:calc(50% - 50%);width:100%;height:100%}@media (max-width:767px){.hero .hero-bg-wrap{border-bottom:2px solid #fff}}.hero .logo-wrap{position:absolute;left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);top:20px;width:100%;height:auto;max-width:300px;z-index:3}.hero .two-col{position:relative;z-index:3;margin-bottom:70px;max-width:1150px;-webkit-box-align:center;-ms-flex-align:center;align-items:center}@media (max-width:1023px){.hero .two-col{font-size:.8em}.hero .two-col .col-info .button .button-text{font-size:1.2em}}@media (max-width:767px){.hero .two-col{-ms-flex-wrap:wrap;flex-wrap:wrap;margin-bottom:30px}.hero .two-col .col{width:100%;-ms-flex-preferred-size:100%;flex-basis:100%;text-align:center}.hero .two-col .col .col-pad{position:relative;z-index:3}.hero .two-col .col.phone-col{padding-top:70px;background:-webkit-gradient(linear,left top,left bottom,from(#3ac3f3),to(rgba(12,85,167,0)));background:-o-linear-gradient(top,#3ac3f3 0,rgba(12,85,167,0) 100%);background:linear-gradient(to bottom,#3ac3f3 0,rgba(12,85,167,0) 100%);background:-webkit-gradient(linear,left top,left bottom,from(#3ac3f3),to(rgba(58,195,243,0)));background:-o-linear-gradient(top,#3ac3f3 0,rgba(58,195,243,0) 100%);background:linear-gradient(to bottom,#3ac3f3 0,rgba(58,195,243,0) 100%)}}.hero h1{color:#cde8f1;margin:0 auto;text-transform:uppercase;font-weight:900}@media (max-width:767px){.hero h1{text-align:center;font-size:3.5em;padding:20px 10px;padding-top:200px}}.hero h1 .gradient-text{display:block;color:#cde8f1;-webkit-text-fill-color:transparent;background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#9fe1f3));background:-o-linear-gradient(top,#fff,#9fe1f3);background: linear-gradient(to bottom,#f00,#3bb740);-webkit-background-clip:text;background-size:0;-webkit-background-size:auto;-o-background-size:0}.hero h3{color:#fff;margin:0 auto;font-size:1.8em;text-align:center;text-shadow:0 0 5px rgba(0,0,0,.4)}.hero p{display:inline-block;background-color:rgba(0,0,0,.33);border-radius:6px;color:#fff;padding:10px 20px;font-size:1em;margin:0 0 20px 0}@media (max-width:767px){.hero p.hide-on-mobile{display:none}.hero p.show-on-mobile{max-width:300px;text-align:left;font-size:1.2em}}@media (min-width:767px){.hero p.show-on-mobile{display:none}}.hero .phone-display .phone-mask{width:190px;height:330px;margin:0 auto;position:relative}.hero .phone-display .phone-mask .phone-carousel{position:absolute;top:32px;left:22px;width:146px;height:260px;overflow:hidden}.hero .phone-display .phone-display-info{border-radius:100% 100% 12px 12px/50% 50% 12px 12px;margin:-30px 0 0 0;padding:44px 12px 16px 12px;background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,.5)),to(rgba(255,255,255,.4)));background:-o-linear-gradient(top,rgba(255,255,255,.5) 0,rgba(255,255,255,.4) 100%);background:linear-gradient(to bottom,rgba(255,255,255,.5) 0,rgba(255,255,255,.4) 100%);-webkit-box-shadow:0 0 10px rgba(0,0,0,.3);box-shadow:0 0 10px rgba(0,0,0,.3);width:300px}.hero .appstore-buttons{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-pack:distribute;justify-content:space-around;padding-top:10px;-ms-flex-wrap:nowrap;flex-wrap:nowrap}@media (max-width:1023px){.hero .appstore-buttons{-ms-flex-wrap:wrap;flex-wrap:wrap}}@media (max-width:767px){.hero .appstore-buttons{max-width:300px;margin:10px auto}}.hero p.disclaimer{position:absolute;bottom:-43px;right:10px;font-size:.6em}@media (max-width:767px){.hero p.disclaimer{position:relative;bottom:0;right:0;background-color:transparent;text-align:center;width:100%;padding:0;margin-bottom:30px;font-size:.7em}}@media (max-width:767px){.hero .button-large{position:absolute;left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);bottom:-25px;-webkit-transform:translateX(-52%) scale(1);-ms-transform:translateX(-52%) scale(1);transform:translateX(-52%) scale(1)}}@media (max-width:767px) and (max-width:399px){.hero .button-large{-webkit-transform:translateX(-52%) scale(.8);-ms-transform:translateX(-52%) scale(.8);transform:translateX(-52%) scale(.8);bottom:-28px}}.hero .news-wrap{position:relative;z-index:3;border-top:1px solid #fff;padding:30px 10px}.hero .news-wrap .three-col .col{width:30%;-ms-flex-preferred-size:30%;flex-basis:30%;margin:0 10px 0 30px;border-radius:4px;background:-webkit-gradient(linear,left top,left bottom,from(white),to(rgba(255,255,255,.45)));background:-o-linear-gradient(top,#fff 0,rgba(255,255,255,.45) 100%);background:linear-gradient(to bottom,#fff 0,rgba(255,255,255,.45) 100%)}@media (max-width:767px){.hero .news-wrap .three-col{-ms-flex-wrap:wrap;flex-wrap:wrap}.hero .news-wrap .three-col .col{width:100%;-ms-flex-preferred-size:100%;flex-basis:100%;margin:10px 20px;max-width:450px}}.hero .news-wrap .news-summary{border-radius:4px;padding:16px 10px 9px 55px;font-size:0;text-decoration:none;min-height:45px;text-align:left;cursor:pointer;position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.hero .news-wrap .news-summary .play-icon-large{position:absolute;top:3px;left:-25px;width:72px;height:67px;-webkit-transform-origin:50% 50%;-ms-transform-origin:50% 50%;transform-origin:50% 50%;-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1);-webkit-transition:-webkit-transform .2s ease-out;transition:-webkit-transform .2s ease-out;-o-transition:transform .2s ease-out;transition:transform .2s ease-out;transition:transform .2s ease-out,-webkit-transform .2s ease-out}.hero .news-wrap .news-summary .news-summary-headline{display:inline-block;vertical-align:top;font-size:16px;font-weight:700;color:#333;text-transform:none;margin:0;position:relative;top:-4px;line-height:1.35;text-align:left;text-decoration:none;text-shadow:none}.hero .news-wrap .news-summary:hover:before{-webkit-transform:scale(1.15);-ms-transform:scale(1.15);transform:scale(1.15)}.hero .news-wrap .news-summary:hover .news-summary--headline{text-decoration:underline}.hero .news-wrap .news-summary:hover .play-icon-large{-webkit-transform:scale(1.1);-ms-transform:scale(1.1);transform:scale(1.1)}.hero .news-wrap .news-summary:hover .news-summary-headline{text-decoration:underline}.hero .news-wrap .bottom-hex{width:calc(100% + 148px);height:217px;position:absolute;bottom:0;left:-148px;-webkit-animation-name:slide-left;animation-name:slide-left;-webkit-animation-duration:8s;animation-duration:8s;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-timing-function:linear;animation-timing-function:linear}@media (max-width:767px){.hero .news-wrap .bottom-hex{-webkit-animation:none;animation:none;background:0 0!important}}.hero .region-select{position:absolute;top:0;left:0;width:100%;height:4px;background-color:#2782d2;z-index:100}.hero .region-select .tab-wrap{position:absolute;left:calc(50% - 32.5px);top:4px;-webkit-transform:translateX(-180px);-ms-transform:translateX(-180px);transform:translateX(-180px);width:65px;height:24px;background-color:#2782d2;cursor:pointer}@media (max-width:767px){.hero .region-select .tab-wrap{-webkit-transform:translateX(-120px);-ms-transform:translateX(-120px);transform:translateX(-120px)}}.hero .region-select .blue-tab.left{position:absolute;top:0;left:-48px}.hero .region-select .blue-tab.right{position:absolute;top:0;right:-48px}.hero .region-select .flag-wrap{position:absolute;top:-2px;left:0;width:65px;height:24px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.hero .region-select .arrow-white{width:6px;height:10px;margin-left:10px}
+	.play-icon-large{
+		width: 93px;
+	    height: 85px;
+	    background-position: 21.957% 29.9766%;
+	    background-size: 550.538%;
+	    display: inline-block;
+	    overflow: hidden;
+	    background-repeat: no-repeat;
+	    background-image: url(https://www.pokemongo.com/assets/images/common/sprite.png);
 	}
-	video{
-		width: auto!important;
-		margin:0!important;
-		margin-left: -70%!important;
-	}
-	.inicio{
-		margin-left: auto;
-		margin-right: auto;
-		top: 100px;
-	}
-	.id1{
-		display: none;
-	}
-	@media only screen and (max-width: 600px){
-		.inicio{
-			width: 60%!important;
-		}
-	} 
 </style>
-<audio id="musica" src="audio/intro.mp3" autoplay="" loop="">
-<p>Tu navegador no implementa el elemento audio.</p>
-</audio>
-<!-- start the body of your page -->
-<body style='margin : 0px; overflow: hidden;'>
-	<div id="contenedor" style="">
-		
-	</div>
-	<!-- add some info at the top of the page -->
-	<label id="demo" style="    margin-left:45%;
-    margin-top: 30px;
-    width: 20%;">Other</label>
-	<div id ="botones" style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
-		
-		<p id="demo"></p>
-		<div class="row ">
-			<div class="col-md-4 inicio">
-				
-						
-				<button type="button" onclick="empezar();" class="btn btn-primary btn-lg btn-block">Ingresar</button>
-				
-				<button type="button" onclick="buscar();" class="btn btn-default btn-lg btn-block">Seleccionar_usuario</button>
-			</div>
-		</div>
-	</div>
-	
-	<!-- Define your 3d scene and enabled ar.js -->
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,900,300,700%7CRoboto+Condensed:700" media="all">
+<script src="https://assets.adobedtm.com/6c671dc48d6617494938091e9ec0e82bd30f1aef/s-code-contents-33c9590063b5b6710f5e9b52522292357ae32242.js"></script><style></style>
+</head>
 
-<a-scene >
-		<a-marker id="id1" preset='hiro'>
-		
-			<a-image position='0 0.5 0' rotation="-90 0 0" src="pez.png" width="2" height="2"></a-image>
 
-		</a-marker>
-
-		<!-- handle matrix marker -->
-		<a-marker type='barcode' value='5'>
-			<a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:pink;'>
-				<a-torus-knot radius='0.26' radius-tubular='0.05'>
-					<a-animation attribute="rotation" to="360 0 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
-				</a-torus-knot>
-			</a-box>
-		</a-marker>
-		
-		<!-- handle kanji marker -->
-		<a-marker preset='kanji'>
-			<a-image position='0 0.5 0' rotation="-90 0 0" src="wall.png" width="2" height="2"></a-image>
-		</a-marker>
-		
-		<!-- add a simple camera -->
-		<a-entity camera></a-entity>
+<body>
+<main role="main" class="main" data-hook="main_content">
+   <section id="hero" class="hero">
+      <div class="hero-bg-wrap hide-on-mobile">
+         <div class="hero-bg" data-random-hero="" style="background-image: url(https://www.pokemongo.com/assets/images/hero/backgrounds/hero-seattle.jpg); transform: scale(1);"></div>
+      </div>
+      
+      <div class="two-col">
+         <div class="col col-info">
+            <div class="hero-bg-wrap show-on-mobile">
+               <div class="hero-bg" data-random-hero="" style="background-image: url(https://www.pokemongo.com/assets/images/hero/backgrounds/hero-seattle.jpg); transform: scale(1);"></div>
+            </div>
+            <div class="logo-wrap show-on-mobile">
+               <div class="img-wrap">
+                  <picture>
+                     
+                     <img src="http://3.bp.blogspot.com/-7neaYQM9LrA/VmjHiCca2cI/AAAAAAAAIKk/boGW0ax-j7M/s1600/250px-Giantbomb3and4.png" alt="mina">
+                  </picture>
+               </div>
+            </div>
+            <div class="col-pad">
+               <h1><span class="gradient-text">¡Busca Minas</span> <span class="gradient-text">Virtual!</span></h1>
+               <p class="hide-on-mobile">¡Escapa del campo minado antes que se acabe tu <em>tiempo</em>!</p>
+               <div class="appstore-info show-on-mobile">
+               	 <h3>¡Escapa del campo minado antes que se acabe tu <em>tiempo</h3>
+               	<div class="appstore-buttons">
+               		<a class="appstore-apple" href="#" >
+               			<picture>
+               				<source srcset="https://www.pokemongo.com/assets/images/hero/store-logos/es/apple-app-store-logo.webp" type="image/webp">
+               				<source srcset="https://www.pokemongo.com/assets/images/hero/store-logos/es/apple-app-store-logo.png" type="image/png">
+               				<img src="https://www.pokemongo.com/assets/images/hero/store-logos/es/apple-app-store-logo.png" alt="Pokémon GO Logo">
+               			</picture></a>
+               		<a class="appstore-google" href="#">
+               			<picture>
+               				<source srcset="https://www.pokemongo.com/assets/images/hero/store-logos/es/google-play-logo.webp" type="image/webp">
+               				<source srcset="https://www.pokemongo.com/assets/images/hero/store-logos/es/google-play-logo.png" type="image/png">
+               				<img src="https://www.pokemongo.com/assets/images/hero/store-logos/es/google-play-logo.png" alt="Pokémon GO Logo">
+               			</picture>
+               		</a>
+               	</div>
+                 
+            	<br>
+               </div>
+               <a href="juego.html">
+               <div class="button button-large" data-youtube-id="vZuh-FX_Jqo">
+                  <div class="play-icon-large" ></div>
+                  <span class="button-text">¡Empezar <em>ya</em> !</span>
+               </div>
+               </a>
+            </div>
+         </div>
+      </div>
+      <div class="region-select">
+         
+      </div>
+   </section>
+</main>
 </body>
-<script type="text/javascript">
-	function empezar(){
-		document.getElementById('contenedor').innerHTML='<audio src="audio/boton.mp3" autoplay=""></audio>'
-
-  		$('#botones').fadeTo( "slow", 0.0 );
-
-		document.getElementById('id1').style.display = 'block';
-		setTimeout(function(){
-			document.getElementById('botones').style.display= 'none';	
-		    //do what you need here
-		}, 1000);
-		document.getElementById('musica').src = 'audio/juego.mp3';
-		cronometro();
-		
-	}
-	function cronometro(){
-		var countDownDate = new Date();
-		var min = countDownDate.getMinutes();
-		countDownDate.setMinutes(min+1);
-
-		// Update the count down every 1 second
-		var x = setInterval(function() {
-
-		    // Get todays date and time
-		    var now = new Date().getTime();
-		    
-		    // Find the distance between now and the count down date
-		    var distance = countDownDate - now;
-		    
-		    // Time calculations for days, hours, minutes and seconds
-		    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-		    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-		    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-		    
-		    // Output the result in an element with id="demo"
-		    document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
-		    
-		    // If the count down is over, write some text 
-		    if (distance < 0) {
-		        clearInterval(x);
-		        document.getElementById("demo").innerHTML = "EXPIRED";
-		    }
-		}, 1000);
-	}
-	function buscar(){
-		alert(document.getElementById('id1').position);
-	}
-
-
-</script>
+</html>

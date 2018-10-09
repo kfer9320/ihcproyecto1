@@ -1,0 +1,486 @@
+
+<!DOCTYPE html><!-- include a-frame -->
+
+<html>
+<head>
+	<title></title>
+
+<script src="vendor/aframe/build/aframe.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- include ar.js for aframe -->
+<script src='build/aframe-ar.js'></script>
+<script>ARjs.Context.baseURL = 'three.js/' </script>
+<script src='grafo.js'></script>
+<script type="text/javascript">nuevo_juego();</script>
+</head>
+<style type="text/css">
+
+	div#testElement {
+	    display: none;
+	    height: 100px;
+	    width: 100px;
+	    z-index: 5;
+	    position: absolute;
+	    top: 100px;
+	    left: 100px;
+	    color: white;
+	}
+	body{
+		width: 100%!important;
+		margin:0!important;
+	}
+	video{
+		background-color: #FFFFFF;
+		/*width: auto!important;
+		margin:0!important;
+		margin-left: -70%!important;*/
+	}
+	.gameover{
+		 background-image: url("images.jpg");
+		 position: fixed;
+	    /* Full height */
+	    height: 100%; 
+	    width: 100%;
+	    /* Center and scale the image nicely */
+	    background-position: center;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	}
+	.inicio{
+		margin-left: auto;
+		margin-right: auto;
+		top: 100px;
+	}
+	.id1{
+		display: block;
+	}
+	.matar{
+		border-radius: 25px;
+		width: 30px;
+	}
+	#arjsDebugUIContainer{
+		display: none;
+	}
+	.izquierda{
+		width: 2%;
+		height: 100%;
+		
+	}
+	.derecha{
+		width: 2%;
+		height: 100%;
+		position: fixed;
+	    left: 98%;
+	    top: 9%;	
+	}
+	.arriba{
+		width: 100%;	
+		height: 1%;
+		position: fixed;
+	    top: 9%;
+	}
+	#colorr{
+		background-color: #00ff5875;
+	}
+	#vacios{
+		 position: absolute; 
+		 left:0px; 
+		 right:0px; 
+		 bottom:0px;
+		 height: 50px;
+         width: 120px;
+         background-color: #7d5e5d00;
+         border-radius: 10%;
+         text-align: center;
+         color: white;
+         font-size: 28px;
+         margin-bottom: 10px;
+         margin-left: 10px;	
+         box-shadow: 0 0 20px #4f9;
+         text-shadow: 0 0 30px #fff;
+         color: black;
+         font-weight: 500;
+	}
+	.vidas{
+		position: absolute; 
+		 left:80%; 
+		 right:0px; 
+		 bottom:0px;
+		 height: 50px;
+         width: 60px;
+         
+         border-radius: 50%;
+         text-align: center;
+         color: white;
+         font-size: 28px;
+         margin-bottom: 10px;
+         margin-left: 10px;	
+         box-shadow: 0 0 20px #4f9;
+	}
+	.a-enter-vr-button{
+		display: none;
+	}
+	@media only screen and (max-width: 600px){
+		.inicio{
+			width: 60%!important;
+		}
+	} 
+	#vecinos{
+		width: 18px; 
+		margin-left: 20px; 
+		margin-top: 5px;
+		 box-shadow: 0 0 20px #4f9;
+		 text-align: center;
+		 position: absolute;
+		 font-size: 18px;
+    	font-weight: 500
+	}
+</style>
+<div id="testElement">
+<img src="corazon_b.gif" width="200">
+</div>
+<audio id="musica" src="audio/intro.mp3" autoplay="" loop="">
+<p>Tu navegador no implementa el elemento audio.</p>
+</audio>
+<!-- start the body of your page -->
+<body style='margin : 0px; overflow: hidden;'>
+	<div id ="vecinos" style="">
+		P P P
+	</div>
+	<div id ="vacios" >
+		
+	</div>
+
+	<div id="vida1" class="vidas" style="  background-image:url('corazon.png'); background-size: cover;">
+			3
+	</div>
+	
+	<div id="contenedor" style="">
+		
+	</div>
+	<!-- add some info at the top of the page -->
+	<div id="demo" style=" margin-left:25%;
+    margin-top: 30px;
+    width: 20%;"><img src="https://k13.kn3.net/EBDEBFAE6.gif" width="180"></div>
+	<div id ="botones" style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
+		
+		<p id="demo"></p>	
+		<div class="row ">
+			<div class="col-md-4 inicio">
+	
+				<button type="button" class="btn  btn-lg btn-block">60 Seg</button>
+	
+			</div>
+		</div>
+	</div>
+
+	
+	<!-- <div id="matar" style='position: fixed; top: 90%; width:100%; text-align: left; z-index: 1;'>
+
+		<button type="button" onclick="matar();" class="btn btn-primary btn-lg btn-block">X</button>
+	</div>
+	
+	<!-- Define your 3d scene and enabled ar.js -->
+
+<a-scene >
+		<a-marker  id="id1" type ='pattern' url='markers/a.patt'>
+			 <a-box  depth="2" src="box.png" height="2" width="2">
+			 	<a-animation attribute="rotation" to="0 360 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
+			 </a-box>
+		</a-marker>	
+		<a-marker  id="id2" type ='pattern' url='markers/b.patt'>
+			 <a-box  depth="2" src="box.png" height="2" width="2">
+			 	<a-animation attribute="rotation" to="0 360 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
+			 </a-box>
+		</a-marker>	
+		<a-marker id="id3" type ='pattern' url='markers/c.patt'>
+			 <a-box  depth="2" src="box.png" height="2" width="2">
+			 	<a-animation attribute="rotation" to="0 360 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
+			 </a-box>
+		</a-marker>	
+		<a-marker id="id4"  type ='pattern' url='markers/e.patt'>
+			 <a-box  depth="2" src="box.png" height="2" width="2">
+			 	<a-animation attribute="rotation" to="0 360 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
+			 </a-box>
+		</a-marker>	
+		<a-marker id="id5" type ='pattern' url='markers/f.patt'>
+			 <a-box  depth="2" src="box.png" height="2" width="2">
+			 	<a-animation attribute="rotation" to="0 360 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
+			 </a-box>
+		</a-marker>	
+		<a-marker id="id6" type ='pattern' url='markers/g.patt'>
+			 <a-box  depth="2" src="box.png" height="2" width="2">
+			 	<a-animation attribute="rotation" to="0 360 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
+			 </a-box>
+		</a-marker>	
+		<a-marker id="id7" type ='pattern' url='markers/k.patt'>
+			 <a-box  depth="2" src="box.png" height="2" width="2">
+			 	<a-animation attribute="rotation" to="0 360 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
+			 </a-box>
+		</a-marker>	
+		<a-marker id="id8" type ='pattern' url='markers/m.patt'>
+			 <a-box  depth="2" src="box.png" height="2" width="2">
+			 	<a-animation attribute="rotation" to="0 360 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
+			 </a-box>
+		</a-marker>	
+		<a-marker id="id9" type ='pattern' url='markers/q.patt'>
+			 <a-box  depth="2" src="box.png" height="2" width="2">
+			 	<a-animation attribute="rotation" to="0 360 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
+			 </a-box>
+		</a-marker>	
+
+
+		<!-- add a simple camera -->
+		<a-entity camera></a-entity>
+</body>
+<script type="text/javascript">
+	//imprimir();
+	function getRandomArbitrary(min, max) {
+	  return Math.random() * (max - min) + min;
+	}
+	ruleta = Math.round(getRandomArbitrary(1,9));
+	console.log(ruleta);
+	var vidas = 3;
+	var pos_mouse_x = 0;
+	var pos_mouse_y = 0;
+	var contador = 0;
+	var vac = vacios();
+	document.getElementById('contenedor').innerHTML='<audio src="audio/boton.mp3" autoplay=""></audio>';
+	document.getElementById('vacios').innerHTML = vacios()+" vacios";
+  		
+
+	setTimeout(function(){
+		document.getElementById('botones').style.display= 'none';	
+	}, 3000);
+
+	//$('#botones').fadeTo( "slow", 0.0 );
+
+	document.getElementById('musica').src = 'audio/juego.mp3';
+		//console.log(posicion_x);
+	cronometro();
+	var testEl;
+	var cont =0 ;
+	var cont2 = 0;
+	var aux = 1;
+	var flag = 0;
+	var f1 = 1;
+	window.onload = function () {
+	        
+	    testEl = $('testElement');
+	    testEl.onmousedown = testEl.ontouchstart = testEl.onmspointerdown = startDrag;
+	    testEl.style.msTouchAction = 'none';
+	    
+	}
+		function startDrag(e) { 
+	    	console.log("hola");
+	        if (e.type !== 'mousedown') {
+	            testEl.onmousedown = null;
+	            testEl.ontouchmove = testEl.onmspointermove = moveDrag;
+	            testEl.ontouchend = testEl.onmspointerup = function () {
+	                testEl.ontouchmove = null;
+	                testEl.ontouchend = null;
+	    //          testEl.ontouchstart = startDrag; // necessary for Dolfin; this is a bug
+	            }
+	        }
+
+
+	        var pos = [testEl.offsetLeft,testEl.offsetTop];
+	        var origin = getCoors(e);
+
+	        function moveDrag (e) {
+	            flag = 1;
+	            var currentPos = getCoors(e);
+	            var deltaX = currentPos[0] - origin[0];
+	            var deltaY = currentPos[1] - origin[1];
+	            testEl.style.left = (pos[0] + deltaX) + 'px';
+	            testEl.style.top  = (pos[1] + deltaY) + 'px';
+	            console.log(currentPos);
+	            if(currentPos[0]>300 && currentPos[1]>510)
+	            {
+	            	if(f1== 1){
+	            		vidas++;
+	            		document.getElementById('vida1').innerHTML= vidas;
+	            		f1 = 0;
+	            	}
+	            	
+	                testEl.style.display = 'none';
+	                
+	            }
+	            
+	            return false;
+	        }
+
+
+	        function getCoors(e) {
+
+	            var coors = [];
+	            if (e.touches && e.touches.length) {    // iPhone
+	                coors[0] = e.touches[0].clientX;
+	                coors[1] = e.touches[0].clientY;
+	            } else {                                // all others
+	                coors[0] = e.clientX;
+	                coors[1] = e.clientY;
+	            }
+	            return coors;
+	        }
+	    }
+
+	    function $(id) {
+
+	    	console.log("hola");
+	        return document.getElementById(id);
+	    }
+	function vida(){
+	    document.getElementById("testElement").style.display = "block";
+	   
+	    window.setInterval(
+	        function(){
+	                if(flag == 0){
+	                    document.getElementById("testElement").style.left = cont + "px";
+	                    document.getElementById("testElement").style.top  = cont2 + "px";  
+	                    if(cont >= 200){
+	                        aux= (-1);
+	                    }
+	                    if (cont <= 0) {
+	                        aux = 1;
+	                    }
+	                    cont2 = cont2 +4;
+	                    cont = cont +4*(aux);
+	                    if(cont2 > 1300){
+	                        document.getElementById("testElement").style.display = "none";
+	                        flag = 1;
+	                    }
+	                }
+	      }
+	    ,80);//1000 1 seg
+	}
+	function gameover(){
+
+		vidas = vidas - 1;
+		document.getElementById('vida1').innerHTML= vidas;
+		if (vidas == 2){
+			document.getElementById('vida1').innerHTML= vidas;
+		}
+		if(vidas == 1){
+			document.getElementById('vida1').innerHTML= vidas;
+		}
+		if(vidas <= 0){
+			document.getElementById('contenedor').innerHTML='<div class="gameover"></div>';
+
+			setTimeout(function(){ location.href ="index.html"; }, 2000);
+			
+		}
+	}
+	function cronometro(){
+		var countDownDate = new Date();	
+		var min = countDownDate.getMinutes();
+		countDownDate.setMinutes(min+1);
+
+		// Update the count down every 1 second
+		var x = setInterval(function() {
+
+		    // Get todays date and time
+		    var now = new Date().getTime();
+		    
+		    // Find the distance between now and the count down date
+		    var distance = countDownDate - now;
+		    
+		    // Time calculations for days, hours, minutes and seconds
+		    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+		    
+		 
+		    if(distance < 0){ // 50 seg 50000
+		    	vidas = 0;
+		    	gameover();
+		    	clearInterval(x);
+		    }
+		   
+		    
+		}, 1000);
+	}
+	function buscar(id_unico){
+		if(buscar_bomba(id_unico)== 1){
+
+			navigator.vibrate(3000);
+			alert("POOOOOOOOOOOM!");
+			gameover();
+		}
+		else{
+			contador++;
+			document.getElementById('vacios').innerHTML = vac-contador;
+			if(vac-contador <= 0){
+				alert("ganaste");
+			}
+		}
+		var idn = id_unico + 1;
+		var idi = 'id'+id_unico;
+		document.getElementById(idi).innerHTML='<a-box  depth="2" height="2" width="2" src="'+buscar_texture(id_unico)+'" ></a-box>';
+	}
+
+	function ConfirmDemo() {
+		//Ingresamos un mensaje a mostrar
+		var mensaje = confirm("Ganaste, Desea Continuar??");
+		//Detectamos si el usuario acepto el mensaje
+		if (mensaje) {
+			alert("¡Gracias por aceptar!");
+			window.location.href("juego.html");
+		}
+		//Detectamos si el usuario denegó el mensaje
+		else {
+			alert("Gracias por Jugar!");
+			window.location.href("index.html");
+		}
+	}
+	function printMousePos(event) {
+
+		pos_mouse_y = event.clientY-240;
+		pos_mouse_x = event.clientX;
+		var id = id_marker;
+		
+		if(posicion_x < pos_mouse_x +70 &&posicion_x > pos_mouse_x - 70 && posicion_y < pos_mouse_y +70 &&posicion_y > pos_mouse_y - 70 )
+		{
+			id = id_marker+1;
+			var aux = buscar_vecinos_string(id_marker);
+			document.getElementById('vecinos').innerHTML = aux;
+			//buscar(id);
+			var idi = 'id'+id;
+			//console.log(idi);
+			if(ruleta== id_marker){
+				vida();
+			}
+			document.getElementById(idi).innerHTML='<a-box  depth="2" height="2" width="2" src="'+buscar_texture(id-1)+'" ></a-box>';
+
+			if(buscar_bomba(id-1)== 1){
+
+				navigator.vibrate(3000);
+				alert("POOOOOOOOOOOM!");
+				gameover();
+			}
+			else{
+				contador++;
+				document.getElementById('vacios').innerHTML = vac-contador;
+				if(vac-contador <= 0){
+					alert("ganaste");
+					sleep(1000);
+					window.location.href("index.html");
+				}
+			}
+			/*document.getElementById('id1').innerHTML='<a-box  depth="2" height="2" width="2" src="'+buscar_texture(4)+'" ></a-box>';
+			//alert("te encontre");
+			navigator.vibrate(1000);*/	
+		}
+	
+	//console.log( event.clientX + " "+event.clientY);
+	//console.log( posicion_x + " "+ posicion_y);
+	//document.getElementById("bomba").src = "bomban.png";
+
+	}
+
+	document.addEventListener("click", printMousePos);
+
+</script>

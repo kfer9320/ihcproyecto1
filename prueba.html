@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+<title>Drag and drop</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+body {
+    background-color: #ffffff;
+}
+
+div#testElement {
+    display: none;
+    height: 100px;
+    width: 100px;
+    z-index: 5;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    color: white;
+}
+
+p#bubbleTest {
+    border: 5px solid blue;
+    font-size: 150%;
+    display: none;
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+<div id="testElement">
+<img src="corazon_b.gif" width="200">
+</div>
+<script>
+
+var testEl;
+var cont =0 ;
+var cont2 = 0;
+var aux = 1;
+var flag = 0;
+function vida(){
+    document.getElementById("testElement").style.display = "block";
+    window.onload = function () {
+        testEl = $('testElement');
+        testEl.onmousedown = testEl.ontouchstart = testEl.onmspointerdown = startDrag;
+        testEl.style.msTouchAction = 'none';
+    }
+    window.setInterval(
+        function(){
+                if(flag == 0){
+                    testEl.style.left = cont + 'px';
+                    testEl.style.top  = cont2 + 'px';  
+                    if(cont >= screen.width){
+                        aux= (-1);
+                    }
+                    if (cont <= 0) {
+                        aux = 1;
+                    }
+                    cont2 = cont2 +4;
+                    cont = cont +4*(aux);
+                    if(cont2 > 1300){
+                        document.getElementById("testElement").style.display = "none";
+                        flag = 1;
+                    }
+                }
+      }
+    ,8);//1000 1 seg
+    function startDrag(e) { 
+
+        if (e.type !== 'mousedown') {
+            testEl.onmousedown = null;
+            testEl.ontouchmove = testEl.onmspointermove = moveDrag;
+            testEl.ontouchend = testEl.onmspointerup = function () {
+                testEl.ontouchmove = null;
+                testEl.ontouchend = null;
+    //          testEl.ontouchstart = startDrag; // necessary for Dolfin; this is a bug
+            }
+        }
+
+
+        var pos = [testEl.offsetLeft,testEl.offsetTop];
+        var origin = getCoors(e);
+
+        function moveDrag (e) {
+            flag = 1;
+            var currentPos = getCoors(e);
+            var deltaX = currentPos[0] - origin[0];
+            var deltaY = currentPos[1] - origin[1];
+            testEl.style.left = (pos[0] + deltaX) + 'px';
+            testEl.style.top  = (pos[1] + deltaY) + 'px';
+            //console.log(currentPos);
+            if(currentPos[0]>850 && currentPos[1]>1350)
+            {
+                testEl.style.display = 'none';
+            }
+            
+            return false;
+        }
+
+
+        function getCoors(e) {
+            var coors = [];
+            if (e.touches && e.touches.length) {    // iPhone
+                coors[0] = e.touches[0].clientX;
+                coors[1] = e.touches[0].clientY;
+            } else {                                // all others
+                coors[0] = e.clientX;
+                coors[1] = e.clientY;
+            }
+            return coors;
+        }
+    }
+
+    function $(id) {
+        return document.getElementById(id);
+    }
+}
+vida();
+
+</script>
+</body>
+</html>
