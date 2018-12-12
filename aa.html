@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>mousedown demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+ <div><img  id="button_img" src="0.gif"></div>
+<p>Press mouse and release here.</p>
+ 
+<script>
+    window.onload = function() {
+    //preload mouse down image here via Image()
+        $("#button_img").bind('touchstart', function(){
+            console.log("hola");
+            $("#button_img").attr("src","1.gif");
+        }).bind('touchend', function(){
+
+            $("#button_img").attr("src","2.gif");
+        });
+    }
+
+</script>
+ 
+</body>
+</html>
